@@ -1,0 +1,103 @@
+/* carousel demo #1 */
+
+#carousel-1 .slide {
+	height: 250px;
+}
+
+/* carousel demo #2 */
+
+#carousel-2 .slide {
+	height: 300px;
+}
+
+#carousel-2 .slide .item {
+	float: left;
+	display: inline-block;
+	width: 33.33333%;
+	margin: 0;
+	padding: 1em;
+}
+
+/* carousel demo #3 */
+
+#carousel-3 .slide {
+	height: 300px;
+	padding: 0 40px;
+}
+
+#carousel-3 .slide .item {
+	float: left;
+	display: inline-block;
+	width: 33.33333%;
+	margin: 0;
+	padding: 1em;
+	z-index: 100;
+}
+
+#carousel-3 a.control {
+	color: #00cc00;
+	font-size: 36px;
+	position: absolute;
+	height: 300px;
+	line-height: 300px;
+	z-index: 101;
+	background-color: #ffffff;
+	width: 40px;
+}
+
+#carousel-3 a.control.prev {
+	left: 0;
+}
+
+#carousel-3 a.control.next {
+	right: 0;
+}
+
+/* carousel demo #4 */
+
+#carousel-4 .slide {
+	height: 400px;
+	padding: 0;
+}
+
+#carousel-4 .slide img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+#carousel-4 a.control {
+	color: #eeeeee;
+	font-size: 48px;
+	position: absolute;
+	height: 400px;
+	line-height: 400px;
+	z-index: 101;
+	background-color: #333333;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	width: 54px;
+	text-align: center;
+}
+
+#carousel-4 a.control.prev {
+	left: 0;
+}
+
+#carousel-4 a.control.next {
+	right: 0;
+}
+
+.container {
+	margin: 0 auto;
+	width: 100%;
+}
+
+@media (max-width:979px) {
+	.container {
+		width: 100%;
+	}
+}

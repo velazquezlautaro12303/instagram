@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InstagramModelStoreContainer" CdmEntityContainer="InstagramEntities">
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="InstagramModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Like">
+      <EntityTypeMapping TypeName="InstagramModel.Like">
+        <MappingFragment StoreEntitySet="Like">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="InstagramModel.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Share">
+      <EntityTypeMapping TypeName="InstagramModel.Share">
+        <MappingFragment StoreEntitySet="Share">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tweet">
+      <EntityTypeMapping TypeName="InstagramModel.Tweet">
+        <MappingFragment StoreEntitySet="Tweet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="InstagramModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="PhotoUser" ColumnName="PhotoUser" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

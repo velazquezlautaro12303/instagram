@@ -1,0 +1,234 @@
+﻿@model IEnumerable<Instagram.Models.Tweet>
+
+@{
+    ViewBag.Title = "index";
+}
+
+@foreach (var tweet in Model)
+{
+    <div class="tweet">
+        <header>
+            <div class="header">
+                @if (tweet.User.PhotoUser == null)
+                {
+                    <img class="PhotoUser" src="~/Resources/Images/PhotoUser.png" />
+                }
+                else
+                {
+                    <img class="PhotoUser" src="/@tweet.User.PhotoUser" />
+                }
+                <div class="LabelUserTime">
+                    <p class="LabelNameUser">@tweet.User.NameUser</p>
+                    <p class="LabelDateTime">@tweet.Date</p>
+                </div>
+            </div>
+            <p class="LabelDescription">@tweet.Description</p>
+        </header>
+
+        <div class="container" style="padding:0">
+            <div id="carousel-4" class="clearfix">
+                <a href="#" class="control prev">
+                    <img src="~/Resources/Images/Left.png" class="photoFlecha" />
+                </a>
+                <a href="#" class="control next">
+                    <img src="~/Resources/Images/Right.png" class="photoFlecha" />
+                </a>
+                <div class="slide_window clearfix">
+                    @foreach (var path in tweet.Photo.ToList())
+                    {
+                        <div class="slide">
+                            <img src="/@path.Path" class="MainPhoto" style="" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="OrderRowFlexSpace" style="margin-bottom: 10px; margin-top: 10px; padding-left: 5px; padding-right: 2px;">
+                <div class="CounterLikes">
+                    @if (@tweet.Like.Count > 0)
+                    {
+                        <img src="~/Resources/Images/Liked.png" width="23" />
+                        <p class="LabelMeGusta">@tweet.Like.Count Me gusta</p>
+                    }
+                </div>
+                <div class="FlexRowVerticalCenterHorizontalSpace">
+                    @if (tweet.Comment.Count > 0)
+                    {
+                        <p class="LabelCountLikesComment LabelCountComments"><u>@tweet.Comment.Count comentarios</u></p>
+                    }
+                    @if (tweet.Share.Count > 0)
+                    {
+                        <p class="LabelCountLikesComment"><u>@tweet.Share.Count veces compartido</u></p>
+                    }
+                </div>
+            </div>
+            <div class="OrderRowFlexSpace buttonComment">
+                <button class="like buttonLikeCommentShare" value="@tweet.ID">
+                    @if (tweet.Like.Where(t => t.UserID == ViewBag.idMyUser).Any())
+                    {
+                        <img src="~/Resources/Images/Liked.png" width="23" />
+                    }
+                    else
+                    {
+                        <img src="~/Resources/Images/Like.png" width="23" />
+                    }
+                    <p>Me gusta</p>
+                </button>
+                <button class="buttonLikeCommentShare">
+                    <img src="~/Resources/Images/Comment.png" width="23" />
+                    <p>Comentario</p>
+                </button>
+                <button class="buttonLikeCommentShare">
+                    <img src="~/Resources/Images/Share.png" width="23" />
+                    <p>Compartir</p>
+                </button>
+            </div>
+
+            <div style="display: flex; flex-direction:column; display:none;">
+                <hr />
+                @foreach (var comment in tweet.Comment)
+                {
+                    <div style="margin-bottom: 6px; display:flex; justify-content:end;">
+                        <span style="background-color: bisque; border-radius: 6px; padding: 4px;">@comment.Description</span>
+                        @if (comment.User.PhotoUser == null)
+                        {
+                            <img class="PhotoUser" src="~/Resources/Images/PhotoUser.png" style="margin-right:3px; border-style: outset; border-width: 1px; border-color: gray; margin-left: 2px;" />
+                        }
+                        else
+                        {
+                            <img class="PhotoUser" src="/@comment.User.PhotoUser" style="margin-right:3px; border-style: outset; border-width: 1px; border-color: gray; margin-left: 2px;" />
+                        }
+                    </div>
+                }
+                <div style="display: flex; align-items: center;">
+                    @if (tweet.User.PhotoUser == null)
+                    {
+                        <img class="PhotoUser" src="~/Resources/Images/PhotoUser.png" style="margin-right:3px; border-style: outset; border-width: 1px; border-color: gray;" />
+                    }
+                    else
+                    {
+                        <img class="PhotoUser" src="/@tweet.User.PhotoUser" style="margin-right:3px; border-style: outset; border-width: 1px; border-color: gray;" />
+                    }
+                    <input type="text" style="width:100%;" class="form-control" placeholder="Comentario " />
+                    <button style="border-width: 1px; border-radius: 8px; width: 50px; background-color: whitesmoke; ">
+                        <i class="bi bi-send" style="font-size: 25px;"></i>
+                    </button>
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+}
+
+
+<!--<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            ...
+        </div>
+    </div>
+</div>-->
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crea una nueva publicación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (Html.BeginForm("LoadTweet", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div style="height:600px; display:flex; flex-direction:row;">
+                        <div class="cropme" style="width: 100%; height: 100%;"></div>
+                        <div id="cropme123"><input type="text" value="" name="imagenEnviar" id="imagenEnviar" style="display:none;" /></div>
+                        <div style="height:100%; width:210px; padding-left:10px;">
+                            <div class="form-group">
+                                <label class="control-label" for="Description">Descripcion</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" aria-label="With textarea" name="Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.cropme').simpleCropper();
+
+    $('.buttonComment').click(function () {
+        $(this).parent().children().last().css("display", "flex");
+    });
+
+    $('.LabelCountComments').click(function () {
+        $(this).parent().parent().parent().children().last().css("display", "flex");
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    /* define $ as jQuery just in case */
+    (function ($) {
+        /* doc ready */
+        $(function () {
+            /* init the plugin */
+            $('.container').children("div").each(function () { $(this).carousel(); });
+        });
+    })(jQuery);
+
+    $('.like').click(function () {
+
+        var data = $(this).attr("value");
+        var ref = $(this);
+
+        $.ajax({
+
+            url: '@Url.Action("SetLike", "Home")',
+            type: 'POST',
+            data: { idTweet: data },
+            dataType: 'json',
+
+            success: function (data) {
+                if (data) {
+                    ref.children("img").attr("src", "/Resources/Images/Liked.png");
+                }
+                else {
+                    ref.children("img").attr("src", "/Resources/Images/Like.png");
+                }
+            },
+
+            error: function () {
+                alert('Disculpe, existió un problema');
+            },
+
+            complete: function () {
+                //alert('Petición realizada');
+            }
+        });
+
+    });
+
+</script>

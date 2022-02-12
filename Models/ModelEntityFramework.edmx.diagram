@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c5bb64e37614eaf9b8cf264efa620a1" Name="Diagram1">
+        <EntityTypeShape EntityType="InstagramModel.Comment" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InstagramModel.Like" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InstagramModel.Photo" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InstagramModel.Share" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InstagramModel.Tweet" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="InstagramModel.User" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="InstagramModel.FK_Comment_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Like_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Like_User" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Photo_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Share_Tweet" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Share_User" ManuallyRouted="false" />
+        <AssociationConnector Association="InstagramModel.FK_Tweet_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
